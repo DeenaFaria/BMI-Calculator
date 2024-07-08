@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="bmiCalculatorApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+    <title>BMI Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        .container { max-width: 300px; margin: 0 auto; text-align: center; }
+        form div { margin-bottom: 10px; }
+    </style>
+</head>
+<body ng-controller="BmiController">
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form ng-submit="calculateBMI()">
+            <div>
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" ng-model="weight" required>
+                <select ng-model="weightUnit" ng-options="unit for unit in weightUnits"></select>
+            </div>
+            <div>
+                <label for="height">Height:</label>
+                <input type="text" id="height" ng-model="height" required placeholder="e.g., 5.3 or 5'3&quot;">
+                <select ng-model="heightUnit" ng-options="unit for unit in heightUnits"></select>
+            </div>
+            <button type="submit">Calculate BMI</button>
+        </form>
+        <div ng-if="bmi">
+            <h2>Your BMI: {{bmi | number:2}}</h2>
+            <p>{{bmiCategory}}</p>
+            <p>{{bmiSuggestion}}</p>
+			<img src="minion.jpg" height="250" width="250" alt="minion">
+        </div>
+    </div>
+</body>
+</html>
